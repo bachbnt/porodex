@@ -353,6 +353,8 @@ async function main() {
   write('meta.json', {
     schema: 1,
     version,
+    // Data Dragon numbers patches as (year - 2010).n, so 16.23.1 is the 26.23 players see.
+    patch: `${Number(version.split('.')[0]) + 10}.${version.split('.')[1]}`,
     tftSet,
     counts,
     generatedAt: new Date().toISOString(),

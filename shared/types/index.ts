@@ -1,6 +1,8 @@
 export interface Meta {
   schema: number
   version: string
+  /** Patch as players know it, e.g. "26.23" (Data Dragon's `version` is 16.23.1). */
+  patch: string
   tftSet: { number: number; mutator: string }
   counts: { lolChampions: number; lolItems: number; tftChampions: number; tftTraits: number }
   generatedAt: string

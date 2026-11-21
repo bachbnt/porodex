@@ -4,7 +4,7 @@
       <p>{{ t('footer.disclaimer') }}</p>
       <p class="flex flex-wrap gap-x-4 gap-y-1">
         <span>{{ t('footer.data') }}</span>
-        <span v-if="meta">{{ t('common.patch') }} {{ meta.version }}</span>
+        <span v-if="meta">{{ t('common.patch') }} {{ meta.patch }}</span>
         <NuxtLinkLocale to="/about" class="text-gold hover:text-teal">{{ t('nav.about') }}</NuxtLinkLocale>
       </p>
     </div>

@@ -8,7 +8,7 @@
         <h2 class="font-display text-2xl font-bold text-gold-light">{{ t('about.dataTitle') }}</h2>
         <p class="mt-2 text-muted">{{ t('about.data') }}</p>
         <p v-if="meta" class="mt-2 text-sm text-muted">
-          {{ t('common.patch') }} {{ meta.version }} · TFT set {{ meta.tftSet.number }} ·
+          {{ t('common.patch') }} {{ meta.patch }} · TFT set {{ meta.tftSet.number }} ·
           <time :datetime="meta.generatedAt">{{ meta.generatedAt.slice(0, 10) }}</time>
         </p>
       </section>

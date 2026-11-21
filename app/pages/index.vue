@@ -2,7 +2,7 @@
   <div>
     <section class="relative pt-4 pb-10 text-center sm:pt-10">
       <p v-if="meta" class="font-display text-sm font-bold tracking-[0.3em] text-teal uppercase">
-        {{ t('home.eyebrow', { version: meta.version }) }}
+        {{ t('home.eyebrow', { version: meta.patch }) }}
       </p>
       <h1 class="mx-auto mt-3 max-w-3xl font-display text-5xl leading-[1.05] font-bold text-gold-light sm:text-7xl">
         {{ t('home.title') }}
