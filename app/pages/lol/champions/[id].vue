@@ -97,8 +97,8 @@
         <section aria-labelledby="skins">
           <h2 id="skins" class="font-display text-3xl font-bold text-gold-light">{{ t('lol.skins') }}</h2>
           <hr class="divider !my-3" />
-          <ul class="flex snap-x gap-3 overflow-x-auto pb-3">
-            <li v-for="s in champ.skins" :key="s.num" class="w-32 shrink-0 snap-start">
+          <ul ref="skinList" class="flex snap-x gap-3 overflow-x-auto pb-3">
+            <li v-for="s in skins" :key="s.num" class="w-32 shrink-0 snap-start">
               <img
                 :src="assets.champLoading(champ.id, s.num)"
                 :alt="skinName(s)"
@@ -107,6 +107,8 @@
                 loading="lazy"
                 decoding="async"
                 class="aspect-[308/560] w-full border border-gold-dark object-cover"
+                :data-skin="s.num"
+                @error="hideSkin(s.num)"
               />
               <p class="mt-1 text-xs text-muted">{{ skinName(s) }}</p>
             </li>
@@ -153,6 +155,21 @@ if (error.value || !champ.value) {
 }
 
 const skinName = (s: LolChampion['skins'][number]) => (s.num === 0 ? champ.value!.name : s.name)
+
+// Some skins (old chromas) have no loading art; hide any whose image fails instead of showing a broken box.
+const brokenSkins = ref<number[]>([])
+const skinList = ref<HTMLElement>()
+const skins = computed(() => (champ.value?.skins ?? []).filter((s) => !brokenSkins.value.includes(s.num)))
+const hideSkin = (num: number) => {
+  if (!brokenSkins.value.includes(num)) brokenSkins.value = [...brokenSkins.value, num]
+}
+
+// An image can fail before hydration attaches @error, so check the ones already settled.
+onMounted(() => {
+  skinList.value?.querySelectorAll<HTMLImageElement>('img[data-skin]').forEach((img) => {
+    if (img.complete && img.naturalWidth === 0) hideSkin(Number(img.dataset.skin))
+  })
+})
 
 const STAT_KEYS = [
   'hp', 'hpperlevel', 'mp', 'mpperlevel', 'movespeed', 'armor', 'armorperlevel',

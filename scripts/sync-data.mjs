@@ -75,6 +75,21 @@ function write(rel, data) {
 // League of Legends
 // ---------------------------------------------------------------------------------------------
 
+/**
+ * Data Dragon lists every chroma as its own "skin", but chromas have no loading art.
+ * A chroma is named "<Skin> (<Colour>)", so drop entries whose base skin is also in the list.
+ * (Older chromas without parentheses slip through; the page hides any image that fails to load.)
+ */
+function realSkins(skins) {
+  const names = new Set(skins.map((s) => s.name))
+  return skins
+    .filter((s) => {
+      const m = s.name.match(/^(.*\S) \(([^)]+)\)$/)
+      return !(m && names.has(m[1]))
+    })
+    .map((s) => ({ num: s.num, name: s.name }))
+}
+
 async function syncLol(version, lang) {
   const loc = LANGS[lang].ddragon
   const base = `${DDRAGON}/cdn/${version}/data/${loc}`
@@ -126,7 +141,7 @@ async function syncLol(version, lang) {
         maxrank: s.maxrank,
         icon: s.image.full,
       })),
-      skins: detail.skins.map((s) => ({ num: s.num, name: s.name })),
+      skins: realSkins(detail.skins),
     })
     quiz.push({
       id: detail.id,
