@@ -1,5 +1,7 @@
 # Porodex
 
+🌐 **Live:** https://porodex.web.app
+
 A Hextech-styled field guide for **League of Legends** and **Teamfight Tactics**: champions, items, traits, a TFT team builder and quizzes. Vietnamese and English.
 
 - **LoL:** champions (abilities, stats, lore, skins) and Summoner's Rift items with build paths.
@@ -7,6 +9,18 @@ A Hextech-styled field guide for **League of Legends** and **Teamfight Tactics**
 - **Quiz:** guess a champion from an ability icon, from blurred art, or from TFT traits; or match item recipes.
 
 No backend and no API key. A script downloads Riot's public static data, and `nuxt generate` turns it into plain static pages.
+
+## Screenshots
+
+| LoL champion | TFT team builder |
+| --- | --- |
+| ![LoL champion page](docs/screenshots/lol-champion.jpg) | ![TFT team builder](docs/screenshots/tft-builder.jpg) |
+
+| TFT item recipe chart | Quiz: blurred art |
+| --- | --- |
+| ![TFT item recipe chart](docs/screenshots/tft-items.jpg) | ![Quiz in blurred-art mode](docs/screenshots/quiz.jpg) |
+
+<img src="docs/screenshots/mobile.jpg" alt="Mobile layout" width="260" />
 
 ## Stack
 
