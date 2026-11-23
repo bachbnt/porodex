@@ -61,7 +61,9 @@ The public TFT feed doesn't include per-star ability numbers for the current set
 
 ## Keeping it current
 
-`.github/workflows/deploy.yml` re-syncs the data and redeploys every day, so a new patch appears without any manual step. It needs a `FIREBASE_SERVICE_ACCOUNT` secret. `ci.yml` runs tests, the type check and a full prerender on every push.
+A new patch ships every two weeks. Double-click `scripts/deploy.command` (or run `npm run deploy:local`) to run the tests and the type check, sync the newest data, prerender every page and deploy. `--no-deploy` checks and builds only. It deploys with the `bachbntdev@gmail.com` Firebase account.
+
+The GitHub workflows in `.github/workflows/` (`ci.yml`, `deploy.yml`) are switched off on GitHub, so nothing runs on a push or a schedule. Turn one back on with `gh workflow enable`.
 
 ## Project layout
 

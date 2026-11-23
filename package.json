@@ -15,7 +15,8 @@
     "typecheck": "nuxt typecheck",
     "test": "vitest run",
     "sync": "node scripts/sync-data.mjs",
-    "deploy:firebase": "npm run generate && firebase deploy --only hosting"
+    "deploy:firebase": "npm run generate && firebase deploy --only hosting",
+    "deploy:local": "zsh scripts/deploy.command"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.11.4",
